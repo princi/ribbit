@@ -6,6 +6,8 @@ has_secure_password
 before_validation :prep_email
 before_validation :create_avatar_url
 
+has_many :ribbits
+
 validates :email, presence: true, uniqueness: true, format:{ with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/ }
 validates :username, presence: true, uniqueness: true
 validates :name, presence: true
