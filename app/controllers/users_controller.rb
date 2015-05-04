@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
     if @user.save
       redirect_to @user, notice: "Thank you for signing up for Ribbit!"
     else
@@ -14,6 +14,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @ribbit = Ribbit.new
+
+  end
+
+  def user_params
+    params.require(:user).permit(:email, :name, :username, :passsword, :password)
   end
 
 end
