@@ -46,10 +46,25 @@ class UsersController < ApplicationController
       ).first_or_initialize if current_user
   end
 
-  def user_params
-    params.require(:user).permit(:email, :name, :username, :passsword, :password)
-  end
 
+  def edit
+    @user = User.find(params[:id])
+    redirect_to @user unless @user == current_user
+
+
+  end
+  def update
+    @user = User.find(params[:id])
+
+    if @user.update_attributes(user_params)
+      redirect_to @user, notice: "Profile updated!"
+    else
+       render 'edit'
+    end
+  end
+  def user_params
+    params.require(:user).permit(:email, :name, :username, :passsword, :password_confirmation)
+  end
 end
 
 

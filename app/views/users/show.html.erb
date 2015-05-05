@@ -6,7 +6,9 @@
 
 
 <div id="ribbits" class="panel left">
-  <h1> Your Ribbit Profile </h1>
+  <h1> Ribbit Profile
+  <%= link_to("(edit profile)", edit_user_path(@user)) if @user == current_user %>
+   </h1>
 
   <div class="ribbitWrapper">
     <img class="avatar" src"<%= @user.avatar_url %>" />
