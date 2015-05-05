@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      session[:user_id] = @user.id
       redirect_to @user, notice: "Thank you for signing up for Ribbit!"
     else
       render 'new'
@@ -15,7 +16,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @ribbit = Ribbit.new
-
   end
 
   def user_params
